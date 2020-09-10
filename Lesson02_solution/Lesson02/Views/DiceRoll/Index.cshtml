@@ -1,0 +1,34 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@using Lesson02.Models;
+@{
+    ViewBag.Title = "Index";
+}
+
+<a asp-controller="Home">Home</a>
+<h1>Exercise 5: Roll One Dice</h1>
+<form asp-controller="DiceRoll" method="post">
+    <input type="submit" value="Roll the Dice" />
+</form>
+
+
+@if (ViewBag.Dice != null)
+{
+    <p>
+        The dice landed on @ViewBag.Dice.Outcome <br />
+        The dice has been thrown @ViewBag.Dice.NumRolls times <br />
+        The total score is @ViewBag.Dice.TotalSum <br />
+        The avarage score is @((System.Convert.ToDecimal(ViewBag.Dice.TotalSum) / System.Convert.ToDecimal(ViewBag.Dice.NumRolls)).ToString("N"))
+    </p>
+
+    <p>
+        There has been thrown:
+        <table>
+            @for (int i = 0; i < ViewBag.Dice.Distribution.Length; i++)
+            {
+                <tr><td>  @ViewBag.Dice.Distribution[i] :</td><td>  @(i + 1) </td></tr>
+            }
+        </table>
+    </p>
+
+}

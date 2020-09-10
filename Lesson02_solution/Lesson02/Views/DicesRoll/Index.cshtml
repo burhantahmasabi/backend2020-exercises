@@ -1,0 +1,57 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@using Lesson02.Models;
+@{
+    ViewBag.Title = "Index";
+}
+
+<a asp-controller="Home">Home</a>
+<h1>Exercise 6: Roll Two Dices</h1>
+<form asp-controller="DicesRoll" method="post">
+    <input type="submit" value="Roll the Dice" />
+</form>
+
+
+@if (ViewBag.Dice1 != null)
+{
+    <p>
+        The dice one landed on @ViewBag.Dice1.Outcome <br />
+        The dice has been thrown @ViewBag.Dice1.NumRolls times <br />
+        The total score is @ViewBag.Dice1.TotalSum <br />
+        The avarage score is @((System.Convert.ToDecimal(ViewBag.Dice1.TotalSum) / System.Convert.ToDecimal(ViewBag.Dice1.NumRolls)).ToString("N"))
+    </p>
+
+    <p>
+        There has been thrown:
+        <table>
+            @for (int i = 0; i < ViewBag.Dice1.Distribution.Length; i++)
+            {
+                <tr><td>  @ViewBag.Dice1.Distribution[i] :</td><td>  @(i + 1) </td></tr>
+            }
+        </table>
+    </p>
+
+}
+
+@if (ViewBag.Dice2 != null)
+{
+    <p>
+        The dice two landed on @ViewBag.Dice2.Outcome <br />
+        The dice has been thrown @ViewBag.Dice2.NumRolls times <br />
+        The total score is @ViewBag.Dice2.TotalSum <br />
+        The avarage score is @((System.Convert.ToDecimal(ViewBag.Dice2.TotalSum) / System.Convert.ToDecimal(ViewBag.Dice2.NumRolls)).ToString("N"))
+    </p>
+
+    <p>
+        There has been thrown:
+        <table>
+            @for (int i = 0; i < ViewBag.Dice2.Distribution.Length; i++)
+            {
+                <tr><td>  @ViewBag.Dice2.Distribution[i] :</td><td>  @(i + 1) </td></tr>
+            }
+        </table>
+    </p>
+
+}
+
+
