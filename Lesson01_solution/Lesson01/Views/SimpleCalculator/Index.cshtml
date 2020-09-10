@@ -1,0 +1,45 @@
+﻿@addTagHelper "*, Microsoft.AspNetCore.Mvc.TagHelpers"
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+@addTagHelper "*, Microsoft.AspNetCore.Mvc.TagHelpers"
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Simple calculation</title>
+    <style type="text/css">
+        div {
+            padding-bottom: 12px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Simple Calculator</h1>
+
+    <form method="post" asp-controller="SimpleCalculator" asp-action="Index" asp-method="Index">
+        <div>
+            <input type="text" name="number1" value="@ViewBag.Number1">
+        </div>
+
+        <div>
+            <input type="text" name="number2" value="@ViewBag.Number2">
+        </div>
+
+        <p>
+            <input type="submit" name="operator" value="+">
+            <input type="submit" name="operator" value="-">
+            <input type="submit" name="operator" value="*">
+            <input type="submit" name="operator" value="/">
+        </p>
+
+    </form>
+
+    @if (ViewBag.Result != null)
+    {
+        @:Result: @ViewBag.Result
+    }
+</body>
+</html>

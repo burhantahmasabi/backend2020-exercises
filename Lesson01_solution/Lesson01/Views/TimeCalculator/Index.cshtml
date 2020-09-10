@@ -1,0 +1,49 @@
+﻿@addTagHelper "*, Microsoft.AspNetCore.Mvc.TagHelpers"
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Time Calculator</title>
+    <style type="text/css">
+        div {
+            padding-bottom: 12px;
+        }
+    </style>
+</head>
+<body>
+
+    @if (ViewBag.Total == null)
+    {
+
+        <h1>Time Calulator (in seconds)</h1>
+
+        <form method="post" asp-controller="TimeCalculator" asp-action="Index">
+            <div>
+                <label for="Hours">Hours:</label> <br />
+                <input name="Hours" />
+            </div>
+            <div>
+                <label for="Hours">Minutes:</label> <br />
+                <input name="Minutes" />
+            </div>
+            <div>
+                <label for="Hours">Seconds:</label> <br />
+                <input name="Seconds" />
+            </div>
+            <div>
+                <input type="submit" value="Calculate time">
+            </div>
+        </form>
+    }
+    else
+    {
+
+        <h1>TimeCalculator Result</h1>
+
+        <div>@ViewBag.Hours hours + @ViewBag.Minutes minutes + @ViewBag.Seconds seconds = @ViewBag.Total seconds in total </div>
+    }
+</body>
+</html>
