@@ -1,0 +1,33 @@
+﻿@using MbmStore.Models
+@{
+    ViewData["Title"] = "Customer";
+}
+
+<h2>Customers</h2>
+
+<p>
+    @ViewBag.C1.Firstname  @ViewBag.C1.Lastname <br />
+    @ViewBag.C1.Address <br />
+    @ViewBag.C1.Zip @ViewBag.C1.City
+</p>
+
+<p>
+    @ViewBag.C2.Firstname  @ViewBag.C2.Lastname <br />
+    @ViewBag.C2.Address <br />
+    @ViewBag.C2.Zip @ViewBag.C2.City
+</p>
+
+
+<h2>Phone list</h2>
+<span>
+    @ViewBag.C1.Firstname  @ViewBag.C1.Lastname
+    (@string.Join(", ", ViewBag.C1.PhoneNumbers))
+</span>
+<br />
+<span>
+    @ViewBag.C2.Firstname  @ViewBag.C2.Lastname
+    (@string.Join(", ", ViewBag.C2.PhoneNumbers))
+</span>
+
+<h2>Age example </h2>
+<p>@ViewBag.C1.Firstname  @ViewBag.C1.Lastname is @ViewBag.C1.Age years old</p>

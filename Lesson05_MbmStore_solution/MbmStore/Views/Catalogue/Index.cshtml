@@ -1,0 +1,72 @@
+﻿@using MbmStore.Models;
+@{
+    ViewBag.Title = "Index";
+}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>MbmStore Catalogue</title>
+</head>
+
+
+
+<body>
+    <h2>The Books</h2>
+    @foreach (Book book in ViewBag.Books)
+    {
+        <div>
+            <strong>Title:</strong> @book.Title<br />
+            <strong>Author:</strong> @book.Author<br />
+            <strong>Price:</strong> @book.Price<br />
+            <strong>Publisher:</strong> @book.Publisher (@book.Published)<br />
+            <strong>ISBN:</strong> @book.ISBN<br /> <br />
+            <img src="Images/@book.ImageUrl" />
+        </div>
+    }
+
+    <br />
+    <br />
+
+    <h2>The Music CDs</h2>
+    @foreach (MusicCD cd in ViewBag.MusicCDs)
+    {
+        <div>
+            <strong>Album:</strong> @cd.Title<br />
+            <strong>Artist:</strong> @cd.Artist<br />
+            <strong>Price:</strong> @cd.Price<br />
+            <strong>Publisher:</strong> @cd.Label (@cd.Released)<br /> <br />
+            <img src="Images/@cd.ImageUrl" />
+        </div>
+        <div>
+            <strong>Tracks:</strong>
+
+            <ol>
+
+                @foreach (Track track in @cd.Tracks)
+                {
+                    <li>@track.Title (@track.Composer) @track.Length.Minutes:@track.Length.Seconds </li>
+                }
+
+            </ol>
+            <p><strong>Total playing time</strong>: @cd.GetPlayingTime().Minutes:@cd.GetPlayingTime().Seconds</p>
+        </div>
+    }
+
+    <br />
+    <br />
+
+    <h2>The Movies</h2>
+    @foreach (Movie movie in ViewBag.Movies)
+    {
+        <div>
+            <strong>Title:</strong> @movie.Title<br />
+            <strong>Director:</strong> @movie.Director<br>
+            <strong>Price:</strong> @String.Format("{0:0.00}", movie.Price) <br />
+            <img src="/Images/@movie.ImageUrl" alt="@movie.Title" />
+        </div>
+    }
+
+</body>
+</html>
