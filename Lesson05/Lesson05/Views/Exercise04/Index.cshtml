@@ -1,0 +1,95 @@
+﻿@addTagHelper "*, Microsoft.AspNetCore.Mvc.TagHelpers"
+@using Lesson05.Models
+@model ParkingTicketMachine
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Parking Ticket Machine</title>
+
+    <style>
+        label {
+            display: inline-block;
+            width: 110px;
+            padding: 4px;
+        }
+        .text-box, .data {
+            background-color: lightyellow;
+            border: 0;
+            padding: 1px;
+        }
+       
+       #AmountInserted {
+            width: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <form method="post">
+
+        <div class="dataElem">
+            <label asp-for="@Model.TimeNow)"></label>
+            <span class="data">
+                @Model.TimeNow.ToString("HH:mm")
+            </span><br />
+        </div>
+        
+
+        <div class="dataElem">
+            <label asp-for="@Model.PaidUntil)"></label>
+            <span class="data">
+                @Model.PaidUntil.ToString("HH:mm")
+            </span>
+        </div>
+
+        <div class="dataElem">
+            <br />
+            <label>Info display</label>
+            @if (ViewBag.Payback == false)
+            {
+
+                <input type="text" value="@Model.AmountInserted kr is paid" class="text-box single-line" readonly="readonly" />
+            }
+            else
+            {
+                <input type="text" value="@ViewBag.PaybackAmount kr is paid back" class="text-box single-line" readonly="readonly" />
+            }
+            <br />
+        </div>
+        
+        
+        <div class="dataElem">
+            <input asp-for="@Model.AmountInserted" type="hidden" />
+        </div>
+
+
+        <div class="dataElem">
+            <br /><h3>Coin Insert</h3>
+            @foreach (int i in Model.GetCoinsToInsert())
+            {
+                <input type="submit" id="@i.ToString()" name="@i.ToString()" value="@i.ToString() kr" />
+            }
+
+            <!-- the output
+                <input type="submit" id="1" name="1" value="1 kr" />
+                <input type="submit" id="2" name="2" value="2 kr" />
+                <input type="submit" id="5" name="5" value="5 kr" />
+                <input type="submit" id="10" name="10" value="10 kr" />
+                <input type="submit" id="20" name="20" value="20 kr" />
+            -->
+        </div>
+
+        <div class="dataElem">
+            <br /><br />
+            <input type="submit" name="confirm" value="Confirm" />
+            <input type="submit" name="cancel" value="Cancel" />
+        </div>
+    </form>
+</body>
+</html>

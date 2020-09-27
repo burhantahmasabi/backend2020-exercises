@@ -1,0 +1,45 @@
+﻿@addTagHelper "*, Microsoft.AspNetCore.Mvc.TagHelpers"
+@using System.Globalization;
+@using Lesson05.Models;
+@model BreakfastOrder
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Breakfast order</title>
+</head>
+
+<body>
+    <h1>Your breakfast order</h1>
+    <form method="post" asp-controller="Exercise03" asp-action="Index">
+
+        <p>Hello @Model.Fullname!</p>
+        
+        <p>
+            You ordered:
+            <ul>
+                @{
+                    decimal totalPrice = 0;
+                    for (int i = 0; i < Model.BreakfastFoods.Count(); i++)
+                    {
+
+                        @if (Model.BreakfastFoods[i].Selected == true)
+                        {
+                            <li>@Model.BreakfastFoods[i].Name - @Model.BreakfastFoods[i].Price.ToString("C2", CultureInfo.CreateSpecificCulture("da-DK"))</li>
+                            totalPrice += @Model.BreakfastFoods[i].Price;
+                        }
+                    }
+                }
+            </ul>
+        </p>
+        <p>Total price: @totalPrice.ToString("C2", CultureInfo.CreateSpecificCulture("da-DK")) </p>
+
+        <p>Your order will be prepared and delivered to<br />room number @Model.RoomNumber, @Model.Delivery.ToString("dddd, MMMM dd yyyy, H:mm", CultureInfo.CreateSpecificCulture("en-UK")).</p>
+        
+    </form>
+</body>
+
+</html>

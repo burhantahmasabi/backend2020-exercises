@@ -1,0 +1,23 @@
+﻿@model Lesson05.Models.ParkingTicketMachine
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Confirm</title>
+</head>
+<body>
+
+    <h2>Parking Ticket</h2>
+
+    <p>Time issued: <strong>@Model.TimeNow.ToShortTimeString()</strong></p>
+
+    <p>Parking paid until: <strong>@Model.PaidUntil.ToShortTimeString()</strong></p>
+
+</body>
+</html>
